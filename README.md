@@ -29,4 +29,6 @@ Run the script with `python main.py` and wait :)
 
 *This tool is for informational purposes only.*
 
+## Donate
+Buy The Original Creator [WesSec](https://github.com/WesSec) A Coffee
 [!["Buy The Original Creator A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/wessec)
