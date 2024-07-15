@@ -3,8 +3,7 @@ import time
 import json
 import sys
 from datetime import datetime, timedelta
-import apprise
-
+from discord_webhook import DiscordWebhook
 
 # Load the config file
 try: 
@@ -13,7 +12,7 @@ try:
 
     refresh_token = config['refresh_token']
     reservation_number = config['reservation_number']
-    apprisestr = config['apprisestr']
+    discordstr = config['discordstr']
     wantnotification = config['notifications_enabled']
 
 except Exception as e:
@@ -23,12 +22,13 @@ except Exception as e:
     
 # Check interval in seconds (10 minutes)
 interval = 600
+app_version = '4.34.1-2157'
 # Token expiry time (8 hours)
 token_expiry = datetime.now() + timedelta(hours=8)
 
 headers = {
     "accept": "*/*",
-    "x-tesla-user-agent": "TeslaApp/4.28.2-2157",
+    "x-tesla-user-agent": f"TeslaApp/{app_version}",
     "charset": "utf-8",
     "cache-control": "no-cache",
     "accept-language": "en",
@@ -41,7 +41,7 @@ params = {
     "deviceLanguage": "en",
     "deviceCountry": "US",
     "referenceNumber": reservation_number,
-    "appVersion": "4.28.2-2157",
+    "appVersion": app_version,
 }
 
 
@@ -82,11 +82,9 @@ def fetch_data(acces_token):
 
 # Notify using Apprise
 def notify(message):
-    apobj = apprise.Apprise()
-    # Initialize apprise from config up in the file
-    apobj.add(apprisestr)
-    # Send notification
-    apobj.notify(title="Something changed in your tesla status", body=message)
+    webhook = DiscordWebhook(discordstr)
+    webhook.set_content(message)
+    webhook.execute()
 
 
 # Save data to file
@@ -131,7 +129,7 @@ except FileNotFoundError:
     print(json.dumps(previous_data, indent=4))
 
 # uncomment if you want to print initial values
-print(json.dumps(previous_data, indent=4))
+# print(json.dumps(previous_data, indent=4))
 
 while True:
     try:

@@ -1,0 +1,14 @@
+[Unit]
+Description=Tesla Order Fetch Autostart Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/tesla-order-fetch
+User=root
+ExecStart=/usr/bin/python3 /root/tesla-order-fetch/tesla-order-fetch.py
+Restart=on-failure
+RestartSec=180
+
+[Install]
+WantedBy=multi-user.target

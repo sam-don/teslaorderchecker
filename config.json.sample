@@ -1,6 +1,6 @@
 {
     "refresh_token": "eyXXXX",
-    "reservation_number": "RNXXX",
+    "reservation_number": "RNXXXX",
     "notifications_enabled": false,
-    "apprisestr": ""
+    "discordstr": "https://discord.com/api/webhooks/XXXX"
 }
