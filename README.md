@@ -28,3 +28,5 @@ Run the script with `python main.py` and wait :)
 - Use at your own risk.
 
 *This tool is for informational purposes only.*
+
+[!["Buy The Original Creator A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/wessec)
